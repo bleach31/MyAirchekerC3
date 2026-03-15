@@ -5,7 +5,7 @@
 */
 
 #define TARGET_ADDRESS 0xFFFF     // 0xFFFF is Broadcast (固定送信モード)
-#define TARGET_CHANNEL 8
+#define TARGET_CHANNEL 7
 
 
 //-------------------------------------------------
@@ -88,7 +88,7 @@
 // 周波数チャンネルの指定(own channel)
 //
 
-#define OWN_CHANNEL 8            //=====  04H      REG2
+#define OWN_CHANNEL 7            //=====  04H      REG2
 
 
 
