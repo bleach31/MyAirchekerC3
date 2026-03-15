@@ -20,20 +20,20 @@ int LoRaRecvTask() {
     uint8_t  recv_ch;
     
     retcode = Check_Timer();
-    // temporary setting for sending back to Sender
-    recv_add = data.recv_data[9] << 8 | data.recv_data[10];
-    recv_ch = data.recv_data[11];
-    if ( sender_or_receiver == 0 ) {
-      send_target_address = recv_add;
-      send_target_channel = recv_ch;
-    }
-    
     if ( retcode != 0) return retcode;
     
     retcode = lora.RecieveFrame(&data);
     
     if (retcode  >= 1) return retcode;
     else {
+
+      // RecieveFrame完了後に送信元アドレス・チャンネルを読み取る
+      recv_add = data.recv_data[9] << 8 | data.recv_data[10];
+      recv_ch = data.recv_data[11];
+      if ( sender_or_receiver == 0 ) {
+        send_target_address = recv_add;
+        send_target_channel = recv_ch;
+      }
 
 #if LORA_MESSAGE
       PrintF("\r\n... LoRa Received from  ");
