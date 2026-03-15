@@ -90,12 +90,15 @@ int CLoRa::InitLoRaModule(struct LoRaConfigItem_t &config) {
   }
   SerialLoRa.flush();
 
-
-  while (!SerialLoRa.available()) delayMicroseconds(10);
-
-  while (SerialLoRa.available()) {
-    uint8_t data = SerialLoRa.read();
-    response.push_back(data);
+  // レスポンスをコマンドと同じバイト数読み取る（タイムアウト付き）
+  unsigned long startMs = millis();
+  while (response.size() < command.size() && (millis() - startMs) < 1000) {
+    if (SerialLoRa.available()) {
+      uint8_t data = SerialLoRa.read();
+      response.push_back(data);
+    } else {
+      delayMicroseconds(100);
+    }
   }
 
   PrintF("# Command Response\r\n");
@@ -111,6 +114,10 @@ int CLoRa::InitLoRaModule(struct LoRaConfigItem_t &config) {
   SwitchToNormalMode();
 
   SerialLoRa.begin(LoRa_BaudRate, SERIAL_8N1, LoRa_RxPin, LoRa_TxPin);
+
+  // バッファに残ったゴミデータを破棄
+  delay(50);
+  while (SerialLoRa.available()) { SerialLoRa.read(); }
 
   return ret;
 }
