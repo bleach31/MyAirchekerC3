@@ -6,7 +6,7 @@
 #include "esp32_e220900t22s_jp_lib_3.h"
 
 
-#define VERSION_NO 100          // means 1.0.0
+#define VERSION_NO 201          // means 2.0.1
 #define MAGIC_KEY 0x32          // 本 Aird伝送確認のためのマジックキー.
 #define UNIQUE_ID 176          // 本 Aird伝送確認のための固有ID.
 #define MACHINE_NO 1            // Machine No
