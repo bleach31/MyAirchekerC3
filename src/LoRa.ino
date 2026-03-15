@@ -84,7 +84,7 @@ void LoRaSendTask() {
   } else {
     PrintF("send failed.\r\n\r\n");
   }
-  Serial.flush();
+  SerialLoRa.flush();
 
 #else
   lora.SendFrame(config, (uint8_t *)msg, send_subpacket_size);
@@ -124,7 +124,7 @@ void LoRaSendTask(int Normal_or_Nego) {          // Normal = 0, Nego > 1
   } else {
     PrintF("send failed.\r\n\r\n");
   }
-  Serial.flush();
+  SerialLoRa.flush();
 
 #else
   lora.SendFrame(config, (uint8_t *)msg, send_subpacket_size);

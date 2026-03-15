@@ -2,8 +2,6 @@
 #define __ESP32_E220900T22S_JP_LIB_3_H__
 
 
-// Set serial for debug console (to the Serial Monitor)
-#define Serial Serial
 // Set serial for LoRa (to the module)
 #define SerialLoRa Serial1
 
