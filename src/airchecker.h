@@ -17,7 +17,7 @@
 
 #define LCD_UpsideDown 0        // 液晶表示を上下逆にするか否かの設定。PCなどのUSBポートの差し込み位置に対応。
 
-#define USE_SerialPrint 1       // Use or not Serial.print() to display Monitor or TerminalAp on PC
+#define USE_SerialPrint 0       // Use or not Serial.print() to display Monitor or TerminalAp on PC
 
 #define RSSI_MEASUREMENT_ONLY false // Air受信時のRSSI表示のみを行う場合　true
 

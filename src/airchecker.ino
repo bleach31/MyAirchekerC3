@@ -44,20 +44,12 @@ void setup()
 {
   sender_or_receiver = SENDER_or_RECEIVER;
 
-  // UART0(Serial0) のグローバルコンストラクタが GPIO 20/21 を占有しているため
-  // Serial1 で使う前に明示的に解放する
-  Serial0.end();
-  delay(50);
-
   Serial.begin(19200);
-  delay(2000);
-  Serial.println("\r\n=== AirChecker Debug Start ===");
-  Serial.printf("AUX pin = %d\r\n", digitalRead(LoRa_AUXPin));
+  delay(3000);           // ←★これを追加（PCがシリアルモニタを開くのを3秒待つ）
   
-  Serial1.end();         // end()を実行　just in case
-  delay( 100 );          // 100m秒待つ　just in case
+  Serial1.end();         // end()を実行　←←追加 just in case
+  delay( 100 );          // 100m秒待つ　 ←←追加 just in case
   Serial1.begin(LoRa_BaudRate, SERIAL_8N1, LoRa_RxPin, LoRa_TxPin);
-  Serial.printf("Serial1.begin done. AUX pin = %d\r\n", digitalRead(LoRa_AUXPin));
 
   Set_LCDLED_GPIO();
   Set_LoRa_GPIO();
